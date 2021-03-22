@@ -5,29 +5,79 @@ class Product {
         this.material = material;
         this.arr = undefined;
         this.type = type;
-        this.typeFinder(this.type, this.materialFinder);
-        console.log(this.arr);
     }
 
-    materialFinder(){
-        let i;
-        this.material === "glossy" ? i = 1 : i = 0;
-        return i;
-        console.log(i);
-    }
 
-    typeFinder(element1, element2) {
-        let a = element2;
+}
 
-        if (element1 === "poster") {
-            this.arr = posterArr;
-            console.log("element2 ${}" + a )
-            // console.log(`arr =  ${this.arr}`)
+class Size {
+    constructor(width, height) { // values from inputs & from select {A2, A1, A0, 50x70, 40x50, 60x90, 60x80, 100x70}
+        this.width = width;
+        this.height = height;
+        if (this.width < this.height) {
+            this.getSize(this.width, this.height);
+        } else {
+            this.getSize( this.height, this.width);
         }
+
+    }
+
+    getSize(smallerSize, biggerSize) {
+        if ((smallerSize <= 420) && (biggerSize <= 600)) {
+            return 0; // index of price Array -> A2
+        }
+        else if ((smallerSize <= 600) && (biggerSize <= 900)) {
+            return 1; // index of price Array -> A1
+        }
+        else if ((smallerSize <= 900) && (biggerSize <= 1200)) {
+            return 2; // index of price Array -> A0
+        }
+    }
+
+
+}
+
+class Calculator {
+    constructor() {
+        this.size;
+        this.count;
+        this.material;
+        this.type;
+    }
+
+    addProduct(product) {
+        this.size = product.size;
+        this.count = product.count;
+        this.material = product.material;
+        this.type = product.type;
+        this.findSize();
+
+    }
+
+    findSize() {
+        if (this.size === 0) {
+            console.log(0);
+            return 0;
+
+        } else if (this.size === 1) {
+            console.log(1);
+            return 1;
+
+        } else {
+            console.log(2);
+            return 2;
+        }
+    }
+
+
+    findMaterial() {
+        return this.material === "glossy" ? 1 : 0;
     }
 }
 
 
-let poster = new Product(22, 1, "glossy", "poster");
+let calculation = new Calculator;
+calculation.addProduct(new Product(22, new Size(400, 600), "glossy", "poster"));
 
-console.log(poster.materialFinder());
+
+// console.log(poster.materialFinder());
