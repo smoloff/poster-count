@@ -43,6 +43,7 @@ class Calculator {
         this.count;
         this.material;
         this.type;
+        this.priceArray =[];
     }
 
     addProduct(product) {
@@ -51,6 +52,8 @@ class Calculator {
         this.material = product.material;
         this.type = product.type;
         this.findSize();
+        this.findType();
+
 
     }
 
@@ -69,10 +72,21 @@ class Calculator {
         }
     }
 
-
-    findMaterial() {
-        return this.material === "glossy" ? 1 : 0;
+    findType() {
+        if (this.type === "poster"){
+            this.priceArray = posterArr;
+        } else if (this.type === "photo"){
+            this.priceArray = photoArr;
+        } else if  (this.type === "blueprints"){
+            this.priceArray = blueprintsArr;
+        } else if (this.type === "blueprintsColor"){
+            this.priceArray  = blueprintsColorArr;
+        }
+        console.log(this.priceArray);
     }
+    // findMaterial() {
+    //     return this.material === "glossy" ? 1 : 0;
+    // }
 }
 
 
